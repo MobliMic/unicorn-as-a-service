@@ -10,7 +10,7 @@ import (
 )
 
 func ProcessImage(width uint, height uint) *bytes.Buffer {
-	reader, err := os.Open("./assets/unicorn.png")
+	reader, err := os.Open("./assets/unicorn2.png")
 	if err != nil {
 		log.Fatal(err)
 	}
