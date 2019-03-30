@@ -21,6 +21,9 @@ func ImageHandler(w http.ResponseWriter, r *http.Request) {
 
 	image := img.ProcessImage(uint(width), uint(height))
 
+	w.Header().Set("Content-Type", "image/png")
+	w.Header().Set("Content-Length", strconv.Itoa(len(image.Bytes())))
+
 	_, err := w.Write(image.Bytes())
 	if err != nil {
 		log.Fatal(err)

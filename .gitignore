@@ -1,4 +1,5 @@
 *.swp
 test.jpeg
 rendered.jpeg
+.DS_Store
 uaas

@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"github.com/nfnt/resize"
 	"image"
-	"image/jpeg"
+	"image/png"
 	"log"
 	"os"
 )
 
 func ProcessImage(width uint, height uint) *bytes.Buffer {
-	reader, err := os.Open("test.jpeg")
+	reader, err := os.Open("./assets/unicorn.png")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,22 +27,22 @@ func ProcessImage(width uint, height uint) *bytes.Buffer {
 		log.Fatal(err)
 	}
 
-	file, err := os.Create("rendered.jpeg")
-	if err != nil {
-		log.Fatal(err)
-	}
+	//	file, err := os.Create("rendered.jpeg")
+	//	if err != nil {
+	//		log.Fatal(err)
+	//	}
 
 	buff := new(bytes.Buffer)
 
-	err = jpeg.Encode(buff, newJpeg, nil)
+	err = png.Encode(buff, newJpeg)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = jpeg.Encode(file, newJpeg, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+	//	err = jpeg.Encode(file, newJpeg, nil)
+	//	if err != nil {
+	//		log.Fatal(err)
+	//	}
 
 	return buff
 }
