@@ -5,7 +5,9 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
+	"uaas/img"
 )
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
@@ -13,7 +15,16 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ImageHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "lol")
+	vars := mux.Vars(r)
+	width, _ := strconv.ParseUint(vars["width"], 10, 32)
+	height, _ := strconv.ParseUint(vars["height"], 10, 32)
+
+	image := img.ProcessImage(uint(width), uint(height))
+
+	_, err := w.Write(image.Bytes())
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func New() {
