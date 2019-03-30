@@ -7,6 +7,7 @@ import (
 	"image/jpeg"
 	"log"
 	"os"
+	"uaas/server"
 )
 
 func processImage(width uint, height uint) image.Image {
@@ -41,7 +42,9 @@ func processImage(width uint, height uint) image.Image {
 }
 
 func main() {
-	fmt.Println(processImage(500, 300))
+	//	fmt.Println(processImage(500, 300))
+
+	server.New()
 
 	fmt.Println("uaas")
 }
